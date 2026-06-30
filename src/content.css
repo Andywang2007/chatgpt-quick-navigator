@@ -1,0 +1,221 @@
+#cqn-root {
+  --cqn-bg: rgba(255, 255, 255, 0.96);
+  --cqn-bg-soft: #f4f4f5;
+  --cqn-border: rgba(0, 0, 0, 0.12);
+  --cqn-text: #171717;
+  --cqn-muted: #71717a;
+  --cqn-hover: #eeeeef;
+  --cqn-active: #e1f4ec;
+  --cqn-accent: #0f7b5c;
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  z-index: 2147483000;
+  color: var(--cqn-text);
+  color-scheme: light;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+html.dark #cqn-root,
+html[data-theme="dark"] #cqn-root {
+  --cqn-bg: rgba(32, 32, 32, 0.96);
+  --cqn-bg-soft: #2b2b2f;
+  --cqn-border: rgba(255, 255, 255, 0.14);
+  --cqn-text: #f4f4f5;
+  --cqn-muted: #a1a1aa;
+  --cqn-hover: #333337;
+  --cqn-active: #173f35;
+  --cqn-accent: #5bc6a6;
+  color-scheme: dark;
+}
+
+#cqn-root *,
+#cqn-root *::before,
+#cqn-root *::after {
+  box-sizing: border-box;
+}
+
+#cqn-root button,
+#cqn-root input {
+  font: inherit;
+}
+
+#cqn-root button {
+  color: inherit;
+}
+
+#cqn-root .cqn-panel {
+  display: flex;
+  width: min(304px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px);
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--cqn-border);
+  border-radius: 14px;
+  background: var(--cqn-bg);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+#cqn-root .cqn-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--cqn-border);
+  border-radius: 12px;
+  background: var(--cqn-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+#cqn-root.cqn-collapsed .cqn-panel {
+  display: none;
+}
+
+#cqn-root.cqn-collapsed .cqn-toggle {
+  display: block;
+}
+
+#cqn-root .cqn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 10px;
+}
+
+#cqn-root .cqn-header strong {
+  display: block;
+  font-size: 15px;
+}
+
+#cqn-root .cqn-count {
+  display: block;
+  margin-top: 2px;
+  color: var(--cqn-muted);
+  font-size: 12px;
+}
+
+#cqn-root .cqn-collapse {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 21px;
+  line-height: 1;
+}
+
+#cqn-root .cqn-collapse:hover,
+#cqn-root .cqn-collapse:focus-visible {
+  background: var(--cqn-hover);
+}
+
+#cqn-root .cqn-search-wrap {
+  padding: 0 12px 10px;
+}
+
+#cqn-root .cqn-search {
+  width: 100%;
+  height: 36px;
+  border: 1px solid var(--cqn-border);
+  border-radius: 9px;
+  outline: none;
+  background: var(--cqn-bg-soft);
+  color: var(--cqn-text);
+  padding: 0 10px;
+}
+
+#cqn-root .cqn-search:focus {
+  border-color: var(--cqn-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cqn-accent) 20%, transparent);
+}
+
+#cqn-root .cqn-list {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 8px 8px;
+  scrollbar-width: thin;
+}
+
+#cqn-root .cqn-item {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 25px minmax(0, 1fr);
+  align-items: start;
+  gap: 7px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+#cqn-root .cqn-item:hover,
+#cqn-root .cqn-item:focus-visible {
+  background: var(--cqn-hover);
+  outline: none;
+}
+
+#cqn-root .cqn-item.cqn-active {
+  background: var(--cqn-active);
+  color: var(--cqn-accent);
+}
+
+#cqn-root .cqn-number {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 7px;
+  background: var(--cqn-bg-soft);
+  color: var(--cqn-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+#cqn-root .cqn-title {
+  display: -webkit-box;
+  overflow: hidden;
+  padding-top: 2px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+#cqn-root .cqn-empty {
+  margin: 0;
+  padding: 28px 16px 34px;
+  color: var(--cqn-muted);
+  text-align: center;
+}
+
+#cqn-root .cqn-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-top: 1px solid var(--cqn-border);
+  padding: 10px 12px 12px;
+}
+
+#cqn-root .cqn-footer button {
+  height: 34px;
+  border: 1px solid var(--cqn-border);
+  border-radius: 9px;
+  background: var(--cqn-bg-soft);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#cqn-root .cqn-footer button:hover:not(:disabled),
+#cqn-root .cqn-footer button:focus-visible:not(:disabled) {
+  border-color: var(--cqn-accent);
+}
+
+#cqn-root .cqn-footer button:disabled {
+  cursor: default;
+  opacity: 0.42;
+}

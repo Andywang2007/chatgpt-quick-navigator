@@ -1,0 +1,11 @@
+{
+  "name": "chatgpt-quick-navigator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A lightweight Edge/Chrome extension for navigating long ChatGPT conversations.",
+  "scripts": {
+    "check": "node --check src/helpers.js && node --check src/content.js",
+    "test": "node --test --test-isolation=none test/helpers.test.js"
+  },
+  "license": "MIT"
+}
