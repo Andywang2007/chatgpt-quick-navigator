@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ChatGPT Quick Navigator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "为 ChatGPT 长对话生成提问目录，并提供快速搜索与跳转。",
   "permissions": ["storage"],
   "content_scripts": [

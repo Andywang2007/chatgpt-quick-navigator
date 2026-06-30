@@ -166,6 +166,10 @@ html[data-theme="dark"] #cqn-root {
   color: var(--cqn-accent);
 }
 
+#cqn-root .cqn-item.cqn-unloaded:not(.cqn-active) {
+  color: var(--cqn-muted);
+}
+
 #cqn-root .cqn-number {
   display: grid;
   width: 24px;
@@ -190,6 +194,15 @@ html[data-theme="dark"] #cqn-root {
   margin: 0;
   padding: 28px 16px 34px;
   color: var(--cqn-muted);
+  text-align: center;
+}
+
+#cqn-root .cqn-status {
+  margin: 0;
+  border-top: 1px solid var(--cqn-border);
+  padding: 9px 12px;
+  color: var(--cqn-muted);
+  font-size: 12px;
   text-align: center;
 }
 

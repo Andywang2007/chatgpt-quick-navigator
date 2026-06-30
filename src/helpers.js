@@ -33,5 +33,45 @@
     return active;
   }
 
-  return { normalizeText, shortenTitle, findActiveIndex };
+  function mergeEntryRecords(previousEntries, observedEntries) {
+    const previousByKey = new Map(
+      previousEntries.map((entry) => [entry.key, entry])
+    );
+    const observedKeys = new Set();
+    let nextSequence = previousEntries.reduce(
+      (maximum, entry) => Math.max(maximum, entry.sequence || 0),
+      0
+    ) + 1;
+    const merged = [];
+
+    observedEntries.forEach((entry) => {
+      const previous = previousByKey.get(entry.key);
+      observedKeys.add(entry.key);
+      merged.push({
+        ...previous,
+        ...entry,
+        sequence: previous?.sequence || nextSequence++
+      });
+    });
+
+    previousEntries.forEach((entry) => {
+      if (observedKeys.has(entry.key)) return;
+      merged.push({
+        ...entry,
+        target: entry.target?.isConnected === false ? null : entry.target
+      });
+    });
+
+    return merged.sort((left, right) => {
+      const leftHasOrder = Number.isFinite(left.order);
+      const rightHasOrder = Number.isFinite(right.order);
+      if (leftHasOrder && rightHasOrder && left.order !== right.order) {
+        return left.order - right.order;
+      }
+      if (leftHasOrder !== rightHasOrder) return leftHasOrder ? -1 : 1;
+      return left.sequence - right.sequence;
+    });
+  }
+
+  return { normalizeText, shortenTitle, findActiveIndex, mergeEntryRecords };
 });
